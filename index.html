@@ -213,13 +213,13 @@ navigator.clipboard&&window.isSecureContext?navigator.clipboard.writeText(txt).t
 
 /* Timeline */
 const T=[
-["ERP migration support","Henry Schein","Supported the migration from Dynamics NAV to Business Central.","[ADD DATES]",1],
-["SAP Ariba/Comet exposure","Resolution Circle","Consulting work on the MANGO Risk Platform.","[ADD DATES]"],
-["Academic Administrative Assistant","University of Johannesburg","Power BI and Excel dashboard work.","[ADD DATES]"],
-["Clickatell 1-Month AI Bootcamp","CAPACITI","Prompt design, chatbot design and AI content workflows.","20 April to 15 May 2026"],
-["BCom Information Systems","University of Johannesburg","Majors: Information Systems, Project Management. Minor: Entrepreneurship.","[ADD DATES]"],
-["Introduction to Artificial Intelligence","IBM - Coursera","Course badge covering foundational AI concepts and practical AI terminology.","[ADD DATES]"],
-["Introduction to Generative AI","Google Cloud - Coursera","Generative AI fundamentals, terminology, and practical applications.","[ADD DATES]"]];
+["ERP migration support","Henry Schein","Supported the migration from Dynamics NAV to Business Central.","[2026/04/01]",1],
+["SAP Ariba/Comet exposure","Resolution Circle","Consulting work on the MANGO Risk Platform.","[2024/07/01]"],
+["Academic Administrative Assistant","University of Johannesburg","Power BI and Excel dashboard work.","[2025/01/01"],
+["Clickatell 1-Month AI Bootcamp","CAPACITI","Prompt design, chatbot design and AI content workflows.","01 September to 30 September 2026"],
+["BCom Information Systems","University of Johannesburg","Majors: Information Systems, Project Management. Minor: Entrepreneurship.","[2024/03/14]"],
+["Introduction to Artificial Intelligence","IBM - Coursera","Course badge covering foundational AI concepts and practical AI terminology.","[2026/09/25]"],
+["Introduction to Generative AI","Google Cloud - Coursera","Generative AI fundamentals, terminology, and practical applications.","[2026/09/18]"]];
 $("tl").innerHTML=T.map(x=>`<li${x[4]?' class="now"':""}><h3 style="font-size:1.1rem">${x[0]}${x[1]?', '+x[1]:""}</h3><p class="mono mu" style="margin:.15rem 0 .4rem;font-size:.82rem">${h(x[3])}</p><p class="mu" style="margin:0">${h(x[2])}</p></li>`).join("");
 
 /* Contact */
