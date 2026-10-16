@@ -4,230 +4,350 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Freddy Thosago | ERP, BI and AI solutions</title>
-<meta name="description" content="Tshepiso Freddy Thosago: BCom Information Systems graduate in Johannesburg who builds ERP, BI and AI solutions, with a full-stack development track.">
+<meta name="description" content="Tshepiso Freddy Thosago: BCom Information Systems graduate in Johannesburg who builds ERP, BI and AI solutions, with a full-stack development track in Python and JavaScript.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Freddy Thosago | ERP, BI and AI solutions">
 <meta property="og:description" content="Business-systems graduate who builds. ERP, BI and AI solutions with a full-stack development track.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌉</text></svg>">
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: { navy:'#0a1628', panel:'#0f2038', line:'#22395c', ink:'#e6edf7', muted:'#a3b4cc', cyan:'#22d3ee', orange:'#fb923c' },
+    fontFamily: { sans:['Inter','system-ui','-apple-system','Segoe UI','Roboto','sans-serif'], mono:['ui-monospace','SFMono-Regular','Menlo','Consolas','monospace'] }
+  } }
+}
+</script>
 <style>
 :root{--bg:#0a1628;--panel:#0f2038;--line:#22395c;--tx:#e6edf7;--mu:#a3b4cc;--cy:#22d3ee;--or:#fb923c}
-html{scroll-padding-top:4.5rem}
-@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 a{color:var(--cy)}
 :focus-visible{outline:2px solid var(--cy);outline-offset:3px;border-radius:4px}
 .wrap{max-width:68rem;margin:0 auto;padding:0 1.25rem}
-section{padding:4.5rem 0}
-h1,h2,h3{line-height:1.15;letter-spacing:-.02em;margin:0}
-h2{font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:1.75rem}
-.mu{color:var(--mu)}
-.ph{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--or);font-size:.92em}
-.btn{display:inline-block;padding:.65rem 1.1rem;border-radius:.5rem;font-weight:600;text-decoration:none;border:1px solid var(--cy);color:var(--cy);background:transparent;cursor:pointer;font-size:.95rem;font-family:inherit}
-.btn:hover{background:rgba(34,211,238,.12)}
-.btn.pri{background:var(--cy);color:#04202a}
-.btn.pri:hover{background:#67e8f9}
-.btn[disabled],.btn[aria-disabled=true]{border-color:var(--line);color:var(--mu);background:none;cursor:not-allowed}
-.btn.sm{padding:.4rem .75rem;font-size:.85rem}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:.75rem;padding:1.4rem}
-.tag,.badge{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.78rem}
-.tag{color:var(--or)}
-.badge{border:1px solid var(--line);border-radius:.35rem;padding:.1rem .45rem;color:var(--mu)}
-nav a.l{color:var(--mu);text-decoration:none;padding:.5rem .6rem;display:block}
-nav a.l:hover{color:var(--tx)}
-[role=tab]{background:none;border:0;border-bottom:2px solid transparent;color:var(--mu);padding:.6rem .9rem;cursor:pointer;font:inherit;font-weight:600}
-[role=tab][aria-selected=true]{color:var(--cy);border-color:var(--cy)}
-pre.p{white-space:pre-wrap;margin:0;background:#081222;border:1px solid var(--line);border-radius:.5rem;padding:1rem;font-size:.88rem;line-height:1.55}
-.tl{border-left:2px solid var(--line);margin-left:.5rem;padding-left:1.4rem}
-.tl li{position:relative;margin-bottom:1.6rem}
+section{padding:4rem 0}
+/* subtle depth: radial glows */
+.glow{position:relative}
+.glow::before{content:"";position:absolute;inset:0;background:
+ radial-gradient(600px 300px at 15% 0%,rgba(34,211,238,.07),transparent 60%),
+ radial-gradient(500px 300px at 85% 100%,rgba(251,146,60,.05),transparent 60%);pointer-events:none}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:1rem}
+.card-h{transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+.card-h:hover{transform:translateY(-5px);border-color:rgba(34,211,238,.35);box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.chip{display:inline-block;border:1px solid var(--line);background:rgba(10,22,40,.6);border-radius:999px;padding:.15rem .7rem;font-size:.72rem;color:var(--mu)}
+.btn{display:inline-flex;align-items:center;gap:.4rem;border-radius:.65rem;padding:.65rem 1.1rem;font-size:.85rem;font-weight:600;text-decoration:none;transition:all .2s}
+.btn-pri{background:var(--cy);color:#062a33}
+.btn-pri:hover{background:#67e4f2}
+.btn-gho{border:1px solid var(--line);color:var(--tx);background:rgba(15,32,56,.6)}
+.btn-gho:hover{border-color:var(--cy);color:var(--cy)}
+.btn[disabled]{opacity:.55;cursor:not-allowed}
+.tag{display:inline-block;border:1px solid rgba(34,211,238,.25);background:rgba(34,211,238,.08);border-radius:999px;padding:.2rem .8rem;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a5eaf9}
+.ph{color:var(--or)}
+/* timeline */
+.tl{list-style:none;margin:0;padding:0 0 0 2.2rem;position:relative}
+.tl::before{content:"";position:absolute;left:.9rem;top:.4rem;bottom:.4rem;width:2px;background:var(--line)}
+.tl li{position:relative;padding:0 0 1.6rem}
 .tl li::before{content:"";position:absolute;left:-1.95rem;top:.45rem;width:.7rem;height:.7rem;border-radius:50%;background:var(--bg);border:2px solid var(--cy)}
 .tl li.now::before{background:var(--or);border-color:var(--or)}
-dialog{background:var(--panel);color:var(--tx);border:1px solid var(--line);border-radius:.75rem;max-width:34rem;width:calc(100% - 2rem);padding:1.5rem}
-dialog::backdrop{background:rgba(4,10,20,.8)}
-.draw{stroke-dasharray:260;stroke-dashoffset:0}
-@media(prefers-reduced-motion:no-preference){.draw{animation:d 1.6s ease-out both}@keyframes d{from{stroke-dashoffset:260}}}
+.tl h3{font-size:1rem;margin:0}
+.tl .org{color:var(--cy);font-size:.85rem;font-weight:600}
+.tl .desc{color:var(--mu);font-size:.85rem;margin-top:.15rem}
+/* scroll reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.rv{opacity:1;transform:none;transition:none}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+pre.prompt{background:rgba(10,22,40,.7);border:1px solid var(--line);border-radius:.7rem;padding:1rem;overflow-x:auto;font-size:.8rem;line-height:1.7;white-space:pre-wrap;color:var(--tx)}
+dialog::backdrop{background:rgba(4,10,20,.7)}
+dialog{background:var(--panel);color:var(--tx);border:1px solid var(--line);border-radius:1rem;padding:1.5rem;max-width:40rem;width:calc(100% - 2.5rem)}
 </style>
 </head>
-<body>
-<a href="#main" class="btn pri" style="position:absolute;left:-999px" onfocus="this.style.left='1rem';this.style.top='1rem'" onblur="this.style.left='-999px'">Skip to content</a>
+<body class="bg-navy text-ink">
+<a href="#main" class="sr-only">Skip to content</a>
 
-<header style="position:sticky;top:0;z-index:20;background:rgba(10,22,40,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)">
- <nav class="wrap flex items-center justify-between" style="min-height:3.5rem" aria-label="Main">
-  <a href="#top" class="mono" style="color:var(--tx);text-decoration:none;font-weight:700">freddy<span style="color:var(--cy)">.thosago</span></a>
-  <button id="mb" class="md:hidden btn sm" aria-expanded="false" aria-controls="menu">Menu</button>
-  <ul id="menu" class="hidden md:flex absolute md:static left-0 right-0 md:gap-2 list-none m-0 p-3 md:p-0" style="top:3.5rem;background:var(--bg)">
-   <li><a class="l" href="#about">About</a></li>
-   <li><a class="l" href="#projects">Projects</a></li>
-   <li><a class="l" href="#case-study">Case study</a></li>
-   <li><a class="l" href="#experience">Experience</a></li>
-   <li><a class="l" href="#contact">Contact</a></li>
+<header class="sticky top-0 z-40" style="background:rgba(10,22,40,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)">
+ <nav class="wrap flex items-center justify-between h-16" aria-label="Main">
+  <a href="#top" class="font-bold tracking-tight">freddy<span class="text-cyan">.</span>thosago</a>
+  <ul class="hidden md:flex items-center gap-6 text-sm text-muted list-none">
+   <li><a class="hover:text-cyan no-underline" href="#about">About</a></li>
+   <li><a class="hover:text-cyan no-underline" href="#projects">Projects</a></li>
+   <li><a class="hover:text-cyan no-underline" href="#skills">Skills</a></li>
+   <li><a class="hover:text-cyan no-underline" href="#case-study">Case study</a></li>
+   <li><a class="hover:text-cyan no-underline" href="#experience">Experience</a></li>
+   <li><a class="hover:text-cyan no-underline" href="#contact">Contact</a></li>
   </ul>
+  <div class="flex items-center gap-3">
+   <a href="resume.pdf" download class="btn btn-gho hidden sm:inline-flex no-underline">Resume</a>
+   <button id="mb" class="md:hidden btn btn-gho" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu">Menu</button>
+  </div>
  </nav>
+ <ul id="menu" class="hidden md:hidden wrap py-4 text-sm list-none border-t" style="border-color:var(--line)">
+  <li class="py-2"><a class="no-underline" href="#about">About</a></li>
+  <li class="py-2"><a class="no-underline" href="#projects">Projects</a></li>
+  <li class="py-2"><a class="no-underline" href="#skills">Skills</a></li>
+  <li class="py-2"><a class="no-underline" href="#case-study">Case study</a></li>
+  <li class="py-2"><a class="no-underline" href="#experience">Experience</a></li>
+  <li class="py-2"><a class="no-underline" href="#contact">Contact</a></li>
+ </ul>
 </header>
 
 <main id="main">
-<section id="top" style="padding-top:5rem">
- <div class="wrap grid md:grid-cols-2 gap-10 items-center">
-  <div>
-   <h1 style="font-size:clamp(2.1rem,6vw,3.6rem)">I connect the systems a business runs on to the software that improves them.</h1>
-   <p class="mu" style="font-size:1.1rem;margin:1.25rem 0 1.75rem;max-width:34rem">Freddy Thosago, BCom Information Systems graduate in Johannesburg. I build ERP, BI and AI solutions, with a full-stack track in Python and JavaScript.</p>
-   <div class="flex flex-wrap gap-3">
-    <a class="btn pri" href="#projects">View projects</a>
-    <a class="btn" href="resume.pdf" download>Download resume</a>
-    <a class="btn" href="#contact">Get in touch</a>
-   </div>
-  </div>
-  <svg viewBox="0 0 320 150" role="img" aria-label="A bridge linking business systems (ERP, BI) with software (Python, AI)" style="width:100%;height:auto">
-   <rect x="6" y="70" width="96" height="64" rx="8" fill="#0f2038" stroke="#22395c"/>
-   <text x="54" y="98" text-anchor="middle" fill="#e6edf7" font-size="13" font-weight="700">Business</text>
-   <text x="54" y="118" text-anchor="middle" fill="#a3b4cc" font-size="11" font-family="monospace">ERP, BI</text>
-   <rect x="218" y="70" width="96" height="64" rx="8" fill="#0f2038" stroke="#22395c"/>
-   <text x="266" y="98" text-anchor="middle" fill="#e6edf7" font-size="13" font-weight="700">Software</text>
-   <text x="266" y="118" text-anchor="middle" fill="#a3b4cc" font-size="11" font-family="monospace">Python, AI</text>
-   <path class="draw" d="M54 70 C 90 8, 230 8, 266 70" fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round"/>
-   <circle cx="160" cy="21" r="5" fill="#fb923c"/>
-  </svg>
- </div>
-</section>
 
-<section id="about" style="border-top:1px solid var(--line)">
+<!-- HERO -->
+<section id="top" class="glow" style="padding-top:5.5rem;padding-bottom:4.5rem">
  <div class="wrap">
-  <h2>About</h2>
-  <div class="grid md:grid-cols-5 gap-10">
-   <p class="md:col-span-2" style="max-width:34rem">I study how companies run on ERP, reporting and process, then write the software that removes what gets in the way. My experience covers Dynamics NAV to Business Central migration support, SAP Ariba/Comet exposure at Resolution Circle, and Power BI dashboards at the University of Johannesburg. On the development side I build full-stack with Python, Flask and Supabase, and I design AI chatbots and prompts. I also run Rem0Beg Solutions, offering digital and automation services to South African small businesses.</p>
-   <div class="md:col-span-3 grid sm:grid-cols-2 gap-4" id="skills"></div>
+  <p class="text-xs font-bold uppercase tracking-[.2em] text-cyan mb-4">ERP · BI · AI · Full-stack</p>
+  <h1 class="rv" style="font-size:clamp(2.1rem,6vw,3.5rem);line-height:1.1;max-width:44rem">I connect the systems a business runs on to the software that improves them.</h1>
+  <p class="rv text-muted mt-5 text-lg" style="max-width:36rem">Freddy Thosago, BCom Information Systems graduate in Johannesburg. I build ERP, BI and AI solutions, with a full-stack track in Python and JavaScript.</p>
+  <div class="rv mt-8 flex flex-wrap gap-3">
+   <a class="btn btn-pri no-underline" href="#projects">View projects</a>
+   <a class="btn btn-gho no-underline" href="resume.pdf" download>Download resume</a>
+   <a class="btn btn-gho no-underline" href="#contact">Get in touch</a>
   </div>
+  <dl class="rv mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4" id="stats"></dl>
  </div>
 </section>
 
+<!-- ABOUT -->
+<section id="about" style="border-top:1px solid var(--line)">
+ <div class="wrap grid md:grid-cols-5 gap-10">
+  <div class="md:col-span-2 rv">
+   <p class="tag">About</p>
+   <h2 class="mt-4 text-2xl font-bold">How I work</h2>
+   <p class="text-muted mt-4" id="about-text"></p>
+  </div>
+  <div class="md:col-span-3 grid sm:grid-cols-2 gap-4" id="about-cards"></div>
+ </div>
+</section>
+
+<!-- PROJECTS -->
 <section id="projects" style="border-top:1px solid var(--line)">
  <div class="wrap">
-  <h2>Featured projects</h2>
-  <div class="grid md:grid-cols-2 gap-5" id="pgrid"></div>
-  <p class="mu" style="margin-top:1.5rem">Smaller builds: <strong style="color:var(--tx)">StudenTrade</strong>, a student marketplace, and <strong style="color:var(--tx)">Rem0Beg Pay</strong>, a payments project.</p>
+  <div class="rv">
+   <p class="tag">Featured projects</p>
+   <h2 class="mt-4 text-2xl font-bold sm:text-3xl">Projects that show how I think and build.</h2>
+   <p class="text-muted mt-3 max-w-xl text-sm">Not concepts: deployed, working systems with real links. Click a card for the full problem, solution and highlights.</p>
+  </div>
+  <h3 class="rv mt-12 mb-5 text-lg font-bold text-cyan">AI and data <span class="text-muted font-normal">(CAPACITI bootcamp builds)</span></h3>
+  <div class="grid gap-6 md:grid-cols-2" id="grid-ai"></div>
+  <h3 class="rv mt-14 mb-5 text-lg font-bold text-cyan">Platforms and systems <span class="text-muted font-normal">(full-stack products)</span></h3>
+  <div class="grid gap-6 md:grid-cols-2" id="grid-sys"></div>
  </div>
 </section>
 
+<!-- SKILLS -->
+<section id="skills" style="border-top:1px solid var(--line)">
+ <div class="wrap">
+  <div class="rv"><p class="tag">Skills</p><h2 class="mt-4 text-2xl font-bold">The toolkit.</h2></div>
+  <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" id="skills-grid"></div>
+ </div>
+</section>
+
+<!-- CASE STUDY + LIBRARY -->
 <section id="case-study" style="border-top:1px solid var(--line)">
  <div class="wrap">
-  <h2>Case study: prompt engineering, Week 2</h2>
-  <p class="mu" style="max-width:40rem;margin-top:-1rem;margin-bottom:1.5rem">The same task, before and after optimisation, from the Clickatell AI Bootcamp.</p>
-  <div class="card" id="ba">
+  <div class="rv"><p class="tag">Case study</p><h2 class="mt-4 text-2xl font-bold">Prompt engineering, before and after.</h2>
+  <p class="text-muted mt-3 text-sm">The same task, reworked from an ad-hoc request into a structured brief. From the Clickatell AI Bootcamp.</p></div>
+  <div class="card rv mt-8 p-6" id="ba">
    <div role="tablist" aria-label="Before and after" class="flex border-b" style="border-color:var(--line)">
-    <button role="tab" id="t-b" aria-selected="true" aria-controls="p-b">Initial prompt</button>
-    <button role="tab" id="t-a" aria-selected="false" aria-controls="p-a" tabindex="-1">Optimised prompt</button>
+    <button role="tab" id="t-b" aria-selected="true" aria-controls="p-b" class="px-4 py-3 text-sm font-semibold" style="border-bottom:2px solid var(--cy)">Initial prompt</button>
+    <button role="tab" id="t-a" aria-selected="false" aria-controls="p-a" tabindex="-1" class="px-4 py-3 text-sm font-semibold text-muted">Optimised prompt</button>
    </div>
-   <div role="tabpanel" id="p-b" aria-labelledby="t-b" style="padding-top:1rem"><pre class="p">"Write a professional project description for an AI application. Make it clear and engaging."</pre></div>
-   <div role="tabpanel" id="p-a" aria-labelledby="t-a" style="padding-top:1rem" hidden><pre class="p">"Act as a technical copywriter. Using only the project facts provided, write a 90-120 word portfolio description for a hiring manager. Include: problem, solution, primary technologies, and one concrete user benefit. Use a concise, professional tone. Do not invent metrics or features."</pre></div>
-   <h3 style="font-size:1.05rem;margin:1.5rem 0 .5rem">What changed</h3>
-   <ul class="mu" style="margin:0;padding-left:1.2rem"><li>Role, audience, word range, required fields, tone and hallucination constraints are all defined, removing the ambiguity of the baseline.</li><li>The output becomes repeatable and testable: every run is measured against the same structure, so iteration is faster and scoring is consistent.</li></ul>
+   <div role="tabpanel" id="p-b" aria-labelledby="t-b" class="pt-5"><pre class="prompt">"Write a professional project description for an AI application. Make it clear and engaging."</pre></div>
+   <div role="tabpanel" id="p-a" aria-labelledby="t-a" class="pt-5" hidden><pre class="prompt">"Act as a technical copywriter. Using only the project facts provided, write a 90-120 word portfolio description for a hiring manager. Include: problem, solution, primary technologies, and one concrete user benefit. Use a concise, professional tone. Do not invent metrics or features."</pre></div>
+   <h3 class="mt-6 mb-2 text-base font-bold">What changed</h3>
+   <ul class="text-muted text-sm list-disc pl-5 space-y-1">
+    <li>Role, audience, word range, required fields, tone and hallucination constraints are all defined, removing the ambiguity of the baseline.</li>
+    <li>The output becomes repeatable and testable: every run is measured against the same structure, so iteration is faster and scoring is consistent.</li>
+   </ul>
   </div>
-  <h3 style="font-size:1.4rem;margin:3rem 0 1rem">Prompt library</h3>
-  <div class="card" id="lib"></div>
+  <h3 class="rv mt-14 text-xl font-bold">Prompt library</h3>
+  <p class="text-muted text-sm mt-1">Reusable system prompts. Click copy and adapt the bracketed fields.</p>
+  <div class="card rv mt-5 p-6" id="lib"></div>
   <p id="live" class="sr-only" role="status" aria-live="polite"></p>
  </div>
 </section>
 
+<!-- EXPERIENCE -->
 <section id="experience" style="border-top:1px solid var(--line)">
- <div class="wrap">
-  <h2>Experience, education and certifications</h2>
-  <ol class="tl list-none" style="max-width:44rem" id="tl"></ol>
+ <div class="wrap grid md:grid-cols-2 gap-12">
+  <div class="rv">
+   <p class="tag">Experience and education</p>
+   <h2 class="mt-4 text-2xl font-bold">The track so far.</h2>
+   <ul class="tl mt-8" id="timeline"></ul>
+  </div>
+  <div class="rv">
+   <p class="tag">Certifications</p>
+   <h2 class="mt-4 text-2xl font-bold">Continuous learning.</h2>
+   <ul class="mt-8 grid gap-3" id="certs"></ul>
+  </div>
  </div>
 </section>
+
+<!-- CONTACT -->
+<section id="contact" class="glow" style="border-top:1px solid var(--line)">
+ <div class="wrap rv max-w-2xl">
+  <p class="tag">Contact</p>
+  <h2 class="mt-4 text-2xl font-bold sm:text-3xl">Let's build something that works.</h2>
+  <p class="text-muted mt-4">Reach out for software projects, AI workflow experiments, systems work, or conversations about building practical digital products.</p>
+  <div class="mt-8 flex flex-wrap gap-3" id="contact-btns"></div>
+ </div>
+</section>
+
 </main>
 
-<footer id="contact" style="border-top:1px solid var(--line);padding:4rem 0 3rem">
- <div class="wrap">
-  <h2 style="margin-bottom:.5rem">Let's talk</h2>
-  <p class="mu" style="max-width:32rem">Hiring for an ERP, BI, business analysis or junior developer role? Send me a message.</p>
-  <div class="flex flex-wrap items-center gap-3" style="margin-top:1.25rem" id="cta"></div>
-  <p class="mu mono" style="margin-top:2.5rem;font-size:.85rem">Johannesburg, Gauteng, South Africa</p>
+<footer style="border-top:1px solid var(--line)">
+ <div class="wrap py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted">
+  <p>© <span id="yr"></span> Tshepiso Freddy Thosago · Johannesburg, South Africa</p>
+  <p class="mono">Built with vanilla HTML, CSS and JavaScript · Hosted on GitHub Pages</p>
  </div>
 </footer>
 
 <dialog id="dlg" aria-labelledby="dt">
- <div class="flex justify-between items-start gap-4"><h3 id="dt" style="font-size:1.3rem"></h3><button class="btn sm" id="dx" aria-label="Close details">Close</button></div>
- <div id="db" style="margin-top:1rem"></div>
+ <div class="flex justify-between items-start gap-4">
+  <h3 id="dt" class="text-xl font-bold"></h3>
+  <button class="btn btn-gho" id="dx" aria-label="Close details">Close</button>
+ </div>
+ <div id="db" class="mt-4"></div>
 </dialog>
 
 <script>
+/* ================= DATA ================= */
 const CONFIG={email:"tshepisothosago@gmail.com",github:"https://github.com/tshepisofrominnostation",linkedin:""};
 const isPh=s=>!s||s.charAt(0)==="[";
 const h=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\[[A-Z][^\]]*\]/g,m=>'<span class="ph">'+m+'</span>');
 const $=id=>document.getElementById(id);
 
-/* Mobile menu */
-const mb=$("mb"),menu=$("menu");
-mb.onclick=()=>{const o=menu.classList.toggle("hidden")===false;mb.setAttribute("aria-expanded",o)};
-menu.onclick=e=>{if(e.target.closest("a")){menu.classList.add("hidden");mb.setAttribute("aria-expanded","false")}};
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!menu.classList.contains("hidden")&&innerWidth<768){menu.classList.add("hidden");mb.setAttribute("aria-expanded","false");mb.focus()}});
+const STATS=[["7","Projects built"],["4","Live web apps"],["8","Certifications"],["2024","BCom graduated"]];
 
-/* Skills */
-const SK={"Programming and web":["Python","Flask","JavaScript (vanilla)","HTML/CSS","Tailwind","Git/GitHub"],"Databases and analytics":["MySQL","PostgreSQL","Supabase","Power BI","Excel"],"AI and prompt engineering":["Prompt design and optimisation","Chatbot design","AI content workflows"],"ERP and systems":["ERP migration support (Dynamics NAV to Business Central)","SAP Ariba/Comet exposure","Business requirements documents","Architecture documentation"]};
-$("skills").innerHTML=Object.entries(SK).map(([k,v])=>`<div class="card" style="padding:1.1rem"><h3 style="font-size:1rem;margin-bottom:.6rem">${k}</h3><ul class="mu" style="margin:0;padding-left:1.1rem;font-size:.92rem">${v.map(x=>"<li>"+x+"</li>").join("")}</ul></div>`).join("");
+const ABOUT="I study how companies run on ERP, reporting and process, then write the software that removes what gets in the way. My experience covers Dynamics NAV to Business Central migration support, SAP Ariba/Comet exposure at Resolution Circle, and Power BI dashboards at the University of Johannesburg. On the development side I build full-stack with Python, Flask and JavaScript, and I am currently deepening AI and data skills through the CAPACITI / Clickatell bootcamp: chatbots, structured prompt engineering, and sentiment analysis pipelines that turn unstructured feedback into decisions.";
 
-/* Projects */
-const P=[
-{t:"MedRoute",tag:"AI chatbot",who:"Individual",p:"Patients often don't know which specialist to see or how to book one nearby.",s:"A guided triage chatbot matches them to a specialty and a nearby doctor, who accepts or refers the booking.",tech:["HTML/CSS","Vanilla JS","localStorage"],d:["Guided symptom-triage flow","Specialty and nearby-doctor matching","Doctor accept or refer booking (marketplace model)","Emergency red-flag halting and referral chains"],live:"https://tshepisofrominnostation.github.io/medroute-triage",gh:"https://github.com/tshepisofrominnostation/medroute-triage"},
-{t:"AI Content Generator and Prompt Library",tag:"AI workflow",who:"Individual",p:"One-off AI interactions are hard to reproduce: every task starts from an ad-hoc prompt with undefined audience, tone and format.",s:"Prompt templates that separate task instructions, constraints, output format and reusable context, so content generation becomes a repeatable workflow with copy-to-clipboard delivery.",tech:["JavaScript","HTML/CSS","Prompt engineering"],d:["Structured prompt templates","Reusable prompt library model","Copy-to-clipboard workflow"],live:"https://tshepisofrominnostation.github.io/ai-content-generator/",gh:"https://github.com/tshepisofrominnostation/ai-content-generator"},
-{t:"ABSA-Insights: Sentiment Analysis and Data Insights Tool",tag:"Data / AI",who:"Individual",p:"One sentiment score per review hides what customers actually complain about.",s:"Aspect-based sentiment analysis extracts (aspect, sentiment, evidence) triples from 1,200 SA e-commerce reviews: clause-splitting on contrast words, a 7-aspect lexicon, VADER clause scoring, an evaluated LLM comparison engine, a stakeholder insights report, and a live in-browser dashboard.",tech:["Python","VADER","Streamlit","pandas","Plotly"],d:["(aspect, sentiment, evidence) triples with 94.3% coverage","Evaluated on 100 hand-labeled reviews (accuracy + macro-F1)","Insights report with 4 data-derived recommendations"],live:"https://tshepisofrominnostation.github.io/absa-insights/",gh:"https://github.com/tshepisofrominnostation/absa-insights"},
-{t:"SIPMS",tag:"Full-stack capstone",p:"Student information and performance records were scattered across manual processes with no single source of truth or reporting layer.",s:"A full-stack system with Power BI reporting, backed by business requirements and architecture documentation, refactored to interview-ready quality with full template integration and PostgreSQL production support.",tech:["Python","Flask","MySQL","PostgreSQL","Power BI"],d:["Business requirements documents (BRDs)","Architecture documentation","Power BI reporting"],live:"",gh:""},
-{t:"Book-Smart",tag:"B2B SaaS",p:"Schools need a dependable record of the assets they own.",s:"A B2B SaaS for school asset tracking, built on a POPIA-compliant database with Row-Level Security.",tech:["Vanilla JS","Netlify functions","Supabase","PostgreSQL"],d:["9-table POPIA-compliant schema","Row-Level Security","Netlify serverless functions"],live:"https://booksmart-platform.netlify.app",gh:""},
-{t:"Rem0Beg Solutions website",tag:"Business site",p:"Small businesses need a clear first look at where automation could help them.",s:"A single-file site with a multi-step business audit calculator, deployed on GitHub Pages.",tech:["HTML/CSS","Three.js","GSAP","GitHub Pages"],d:["Multi-step business audit calculator","Three.js particle background","GSAP animations"],live:"[PLACEHOLDER URL]",gh:"[PLACEHOLDER URL]"}
+const FOCUS=[
+["Business systems","ERP migrations, business requirements documents, standard operating procedures and the reporting layer around them.","ERP · BA"],
+["Software","Full-stack web applications in Python/Flask and vanilla JavaScript, from database schema to deployed product.","Python · JS"],
+["AI and data","Sentiment analysis pipelines, prompt libraries and chatbots, built to produce evidence, not vibes.","NLP · Prompts"]
 ];
-const btn=(label,url)=>isPh(url)?`<button class="btn sm" disabled aria-disabled="true">${label}: coming soon</button>`:`<a class="btn sm" href="${url}" target="_blank" rel="noopener">${label}</a>`;
-$("pgrid").innerHTML=P.map((x,i)=>`<article class="card flex flex-col gap-3">
-<div class="tag">${x.tag}${x.who?" | "+h(x.who):""}</div>
-<h3 style="font-size:1.25rem">${x.t}</h3>
-<p style="margin:0"><strong>Problem.</strong> <span class="mu">${h(x.p)}</span></p>
-<p style="margin:0"><strong>Solution.</strong> <span class="mu">${h(x.s)}</span></p>
-<div class="flex flex-wrap gap-1.5">${x.tech.map(b=>'<span class="badge">'+h(b)+"</span>").join("")}</div>
-<ul class="mu" style="margin:0;padding-left:1.1rem;font-size:.92rem">${x.d.map(d=>"<li>"+h(d)+"</li>").join("")}</ul>
-<div class="flex flex-wrap gap-2 mt-auto pt-2">${btn("Live demo",x.live)}${btn("GitHub repo",x.gh)}<button class="btn sm" data-i="${i}">View details</button></div></article>`).join("");
-const dlg=$("dlg");
-$("pgrid").onclick=e=>{const b=e.target.closest("button[data-i]");if(!b)return;const x=P[b.dataset.i];
-$("dt").textContent=x.t;
-$("db").innerHTML=`<p class="tag" style="margin:0 0 .75rem">${x.tag}</p><p><strong>Problem.</strong> ${h(x.p)}</p><p><strong>Solution.</strong> ${h(x.s)}</p><p><strong>Key deliverables</strong></p><ul style="padding-left:1.2rem">${x.d.map(d=>"<li>"+h(d)+"</li>").join("")}</ul><p><strong>Built with</strong> ${x.tech.map(t=>h(t)).join(", ")}</p><p><strong>Outcome</strong> <span class="ph">[ADD METRIC]</span></p>`;
-dlg.showModal()};
-$("dx").onclick=()=>dlg.close();
-dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
 
-/* Tabs (roving tabindex, arrow keys) */
-function tabs(root){const ts=[...root.querySelectorAll('[role=tab]')];
-const sel=t=>{ts.forEach(x=>{const on=x===t;x.setAttribute("aria-selected",on);x.tabIndex=on?0:-1;$(x.getAttribute("aria-controls")).hidden=!on});t.focus()};
-ts.forEach((t,i)=>{t.onclick=()=>sel(t);t.onkeydown=e=>{const k={ArrowRight:1,ArrowLeft:-1}[e.key];if(k){e.preventDefault();sel(ts[(i+k+ts.length)%ts.length])}if(e.key==="Home"){e.preventDefault();sel(ts[0])}if(e.key==="End"){e.preventDefault();sel(ts[ts.length-1])}}})}
-tabs($("ba"));
+const SK={"Programming and web":["Python","Flask","JavaScript (vanilla)","HTML/CSS","Tailwind","Git/GitHub"],"Databases and analytics":["MySQL","PostgreSQL","Supabase","Power BI","Excel"],"AI and prompt engineering":["Prompt design and optimisation","Chatbot design","VADER and TextBlob sentiment analysis","AI content workflows"],"ERP and systems":["ERP migration support (Dynamics NAV to Business Central)","SAP Ariba/Comet exposure","Business requirements documents","Architecture documentation"]};
 
-/* Prompt library */
+const P=[
+{g:"ai",t:"MedRoute",tag:"AI chatbot",who:"Individual",p:"Patients often don't know which specialist to see or how to book one nearby.",s:"A guided triage chatbot matches them to a specialty and a nearby doctor, who accepts or refers the booking.",tech:["HTML/CSS","Vanilla JS","localStorage"],d:["Guided symptom-triage flow","Specialty and nearby-doctor matching","Doctor accept or refer booking (marketplace model)","Emergency red-flag halting and referral chains"],live:"https://tshepisofrominnostation.github.io/medroute-triage",gh:"https://github.com/tshepisofrominnostation/medroute-triage"},
+{g:"ai",t:"AI Content Generator and Prompt Library",tag:"AI workflow",who:"Individual",p:"One-off AI interactions are hard to reproduce: every task starts from an ad-hoc prompt with undefined audience, tone and format.",s:"Prompt templates that separate task instructions, constraints, output format and reusable context, so content generation becomes a repeatable workflow with copy-to-clipboard delivery.",tech:["JavaScript","HTML/CSS","Prompt engineering"],d:["Structured prompt templates","Reusable prompt library model","Copy-to-clipboard workflow"],live:"https://tshepisofrominnostation.github.io/ai-content-generator/",gh:"https://github.com/tshepisofrominnostation/ai-content-generator"},
+{g:"ai",t:"ABSA-Insights: Sentiment Analysis and Data Insights Tool",tag:"Data / AI",who:"Individual",p:"One sentiment score per review hides what customers actually complain about.",s:"Aspect-based sentiment analysis extracts (aspect, sentiment, evidence) triples from 1,200 SA e-commerce reviews: clause-splitting on contrast words, a 7-aspect lexicon, VADER clause scoring, an evaluated LLM comparison engine, a stakeholder insights report, and a live in-browser dashboard.",tech:["Python","VADER","Streamlit","pandas","Plotly"],d:["(aspect, sentiment, evidence) triples with 94.3% coverage","Evaluated on 100 hand-labeled reviews (accuracy + macro-F1)","Insights report with 4 data-derived recommendations"],live:"https://tshepisofrominnostation.github.io/absa-insights/",gh:"https://github.com/tshepisofrominnostation/absa-insights"},
+{g:"ai",t:"Retail Banking Sentiment Dashboard",tag:"Data / AI",who:"Individual",p:"Retail banks collect feedback across channels but rarely see which themes actually drive dissatisfaction.",s:"A Streamlit + TextBlob dashboard for the SA retail banking sector: CSV upload or a bundled 41-review SA dataset, polarity and subjectivity scoring, KPIs, channel breakdowns, and an executive report that ranks the drivers of negative sentiment with strategic recommendations.",tech:["Python","Streamlit","TextBlob","Plotly","pandas"],d:["TextBlob polarity/subjectivity engine with +/-0.1 thresholds","KPIs, sentiment donut and channel x sentiment charts","Executive report: Banking App is the weakest channel (61.5% negative reviews), app stability the top driver","One-click CSV export of scored results"],live:"",gh:"https://github.com/tshepisofrominnostation/banking-sentiment-dashboard"},
+{g:"sys",t:"SIPMS",tag:"Full-stack capstone",who:"Individual",p:"Student information and performance records were scattered across manual processes with no single source of truth or reporting layer.",s:"A full-stack system with Power BI reporting, backed by business requirements and architecture documentation, refactored to interview-ready quality with full template integration and PostgreSQL production support.",tech:["Python","Flask","MySQL","PostgreSQL","Power BI"],d:["Business requirements documents (BRDs)","Architecture documentation","Power BI reporting"],live:"",gh:""},
+{g:"sys",t:"Book-Smart",tag:"B2B SaaS",who:"Individual",p:"Schools need a dependable record of the assets they own.",s:"A B2B SaaS for school asset tracking, built on a POPIA-compliant database with Row-Level Security.",tech:["Vanilla JS","Netlify functions","Supabase","PostgreSQL"],d:["9-table POPIA-compliant schema","Row-Level Security","Netlify serverless functions"],live:"https://booksmart-platform.netlify.app",gh:""},
+{g:"sys",t:"Rem0Beg Solutions website",tag:"Business site",who:"Individual",p:"A consulting brand needs a credible home on the web.",s:"A company site presenting services, positioning and contact channels, deployed and live.",tech:["HTML/CSS","Netlify"],d:["Responsive single-page design","Clear service positioning","Live deployment"],live:"",gh:""}
+];
+
+const T=[
+["Full Stack Software Developer Trainee, CAPACITI / Clickatell AI Bootcamp","CAPACITI","Prompt design, chatbot design, AI content workflows and sentiment analysis pipelines. Started August 2026, in progress.","Aug 2026 - present",1],
+["ERP migration support","Henry Schein","Supported the migration from Dynamics NAV to Business Central.","2026"],
+["SAP Ariba/Comet exposure","Resolution Circle","Consulting work on the MANGO Risk Platform.","2024 - 2025"],
+["Academic Administrative Assistant","University of Johannesburg","Power BI and Excel dashboard work.","2025"],
+["BCom Information Systems (graduated 2024)","University of Johannesburg","Majors: Information Systems, Project Management. Minor: Entrepreneurship.","2021 - 2024"]
+];
+
+const CERTS=[
+["Google AI Essentials","Google · Coursera","2026"],
+["Introduction to Artificial Intelligence","IBM · Coursera","2026"],
+["Introduction to Generative AI","Google Cloud · Coursera","2026"],
+["AI For Everyone","DeepLearning.AI · Coursera","2026"],
+["Writing Professional Emails in English","Georgia Tech · Coursera","2026"],
+["Verbal Communication and Presentation Skills","Coursera","2026"],
+["Enhancing Communication Skills (Active Listening)","Coursera","2026"],
+["Developing Interpersonal Skills","IBM · Coursera","2026"]
+];
+
 const L=[
 ["Content writer","You are a [ROLE]. Write [CONTENT TYPE] for [AUDIENCE] in a [TONE] tone.\nMust include: [KEY POINTS].\nLength: [LENGTH].\nOutput format: [FORMAT]."],
 ["Chatbot","You are [BOT NAME], an assistant for [ORGANISATION].\nAsk one question at a time to collect [INFORMATION NEEDED].\nNever [BOUNDARY].\nWhen you have everything, [HANDOFF ACTION]."],
-["Requirements","You are a business analyst. Turn the notes below into a numbered requirements list with [FIELDS].\nFlag anything unclear as a question instead of guessing.\nNotes: [PASTE NOTES]"]];
-$("lib").innerHTML=`<div role="tablist" aria-label="Prompt library" class="flex flex-wrap border-b" style="border-color:var(--line)">${L.map((l,i)=>`<button role="tab" id="lt${i}" aria-selected="${i==0}" aria-controls="lp${i}" ${i?'tabindex="-1"':""}>${l[0]}</button>`).join("")}</div>`+
-L.map((l,i)=>`<div role="tabpanel" id="lp${i}" aria-labelledby="lt${i}" style="padding-top:1rem" ${i?"hidden":""}><p class="mu" style="margin:0 0 .6rem;font-size:.9rem">Sample system prompt. Replace the bracketed fields.</p><pre class="p" id="pr${i}">${h(l[1])}</pre><button class="btn sm cp" style="margin-top:.75rem" data-i="${i}">Copy prompt</button></div>`).join("");
+["Requirements","You are a business analyst. Turn the notes below into a numbered requirements list with [FIELDS].\nFlag anything unclear as a question instead of guessing.\nNotes: [PASTE NOTES]"]
+];
+
+/* ================= RENDER ================= */
+$("stats").innerHTML=STATS.map(s=>`<div class="card p-5"><dd class="text-2xl font-bold text-cyan">${s[0]}</dd><dt class="text-xs text-muted mt-1 uppercase tracking-wider">${s[1]}</dt></div>`).join("");
+
+$("about-text").textContent=ABOUT;
+$("about-cards").innerHTML=FOCUS.map(f=>`<div class="card card-h p-6"><div class="flex items-start justify-between gap-3"><h3 class="font-bold">${f[0]}</h3><span class="chip mono">${f[2]}</span></div><p class="text-muted text-sm mt-3">${f[1]}</p></div>`).join("");
+
+const btn=(label,url,primary)=>isPh(url)?`<button class="btn ${primary?"btn-pri":"btn-gho"}" disabled aria-disabled="true">${label}: coming soon</button>`:`<a class="btn ${primary?"btn-pri":"btn-gho"} no-underline" href="${url}" target="_blank" rel="noopener">${label}</a>`;
+
+function cardHTML(x,i){
+ return `<article class="card card-h rv p-6 flex flex-col">
+  <div class="flex items-start justify-between gap-3"><span class="tag">${x.tag}</span><span class="mono text-xs text-muted">${String(i+1).padStart(2,"0")}</span></div>
+  <h3 class="mt-4 text-lg font-bold">${h(x.t)}</h3>
+  <p class="text-muted text-sm mt-2 grow">${h(x.s)}</p>
+  <div class="mt-4 flex flex-wrap gap-2">${x.tech.map(t=>`<span class="chip">${t}</span>`).join("")}</div>
+  <div class="mt-5 flex flex-wrap gap-2">
+   ${btn("Live demo",x.live,true)}
+   ${btn("GitHub",x.gh)}
+   <button class="btn btn-gho" data-i="${P.indexOf(x)}">View details</button>
+  </div>
+ </article>`;
+}
+$("grid-ai").innerHTML=P.filter(x=>x.g==="ai").map((x,j)=>cardHTML(x,j)).join("");
+$("grid-sys").innerHTML=P.filter(x=>x.g==="sys").map((x,j)=>cardHTML(x,j+10)).join("");
+
+$("skills-grid").innerHTML=Object.entries(SK).map(([g,items])=>`<div class="card card-h p-6"><h3 class="font-bold text-sm uppercase tracking-wider text-cyan">${g}</h3><ul class="mt-4 flex flex-wrap gap-2 list-none">${items.map(i=>`<li class="chip">${i}</li>`).join("")}</ul></div>`).join("");
+
+$("timeline").innerHTML=T.map(e=>`<li${e[4]?' class="now"':""}><h3>${e[0]}</h3><p class="org">${e[1]}</p><p class="desc">${e[2]}</p><p class="mono text-xs text-muted mt-1">${e[3]}</p></li>`).join("");
+
+$("certs").innerHTML=CERTS.map(c=>`<li class="card card-h p-4 flex items-center justify-between gap-4 list-none"><div><p class="font-semibold text-sm">${c[0]}</p><p class="text-muted text-xs mt-.5">${c[1]}</p></div><span class="chip mono">${c[2]}</span></li>`).join("");
+
+$("contact-btns").innerHTML=`<a class="btn btn-pri no-underline" href="mailto:${CONFIG.email}">Email me</a>${btn("GitHub",CONFIG.github)}${btn("LinkedIn",CONFIG.linkedin)}`;
+
+/* project dialog */
+const dlg=$("dlg");
+document.addEventListener("click",e=>{
+ const b=e.target.closest("button[data-i]");
+ if(!b)return;
+ const x=P[+b.dataset.i];
+ $("dt").innerHTML=h(x.t);
+ $("db").innerHTML=`
+  <p class="text-xs uppercase tracking-wider text-cyan font-bold">${x.tag}${x.who?" · "+x.who:""}</p>
+  <div class="mt-4"><h4 class="text-sm font-bold text-orange uppercase tracking-wide">Problem</h4><p class="text-sm mt-1">${h(x.p)}</p></div>
+  <div class="mt-4"><h4 class="text-sm font-bold text-orange uppercase tracking-wide">Solution</h4><p class="text-sm mt-1">${h(x.s)}</p></div>
+  <div class="mt-4"><h4 class="text-sm font-bold text-orange uppercase tracking-wide">Highlights</h4><ul class="text-sm mt-2 list-disc pl-5 space-y-1">${x.d.map(d=>`<li>${h(d)}</li>`).join("")}</ul></div>
+  <div class="mt-5 flex flex-wrap gap-2">${btn("Live demo",x.live,true)}${btn("GitHub",x.gh)}</div>`;
+ dlg.showModal();
+});
+$("dx").onclick=()=>dlg.close();
+
+/* before/after tabs */
+function tabs(root){
+ const ts=[...root.querySelectorAll('[role=tab]')];
+ const sel=t=>{ts.forEach(x=>{const on=x===t;x.setAttribute("aria-selected",on);x.tabIndex=on?0:-1;x.classList.toggle("text-muted",!on);x.style.borderBottom=on?"2px solid var(--cy)":"2px solid transparent";$(x.getAttribute("aria-controls")).hidden=!on});t.focus()};
+ ts.forEach((t,i)=>{t.onclick=()=>sel(t);t.onkeydown=e=>{const k={ArrowRight:1,ArrowLeft:-1}[e.key];if(k){e.preventDefault();sel(ts[(i+k+ts.length)%ts.length])}if(e.key==="Home"){e.preventDefault();sel(ts[0])}if(e.key==="End"){e.preventDefault();sel(ts[ts.length-1])}}});
+}
+tabs($("ba"));
+
+/* prompt library */
+$("lib").innerHTML=`<div role="tablist" aria-label="Prompt library" class="flex flex-wrap border-b" style="border-color:var(--line)">${L.map((l,i)=>`<button role="tab" id="lt${i}" aria-selected="${i==0}" aria-controls="lp${i}" ${i?'tabindex="-1"':""} class="px-4 py-3 text-sm font-semibold">${l[0]}</button>`).join("")}</div>`+
+L.map((l,i)=>`<div role="tabpanel" id="lp${i}" aria-labelledby="lt${i}" ${i?"hidden":""} class="pt-5"><pre class="prompt">${h(l[1])}</pre><button class="cp btn btn-gho mt-3" data-i="${i}">Copy prompt</button></div>`).join("");
 tabs($("lib"));
-$("lib").addEventListener("click",e=>{const b=e.target.closest(".cp");if(!b)return;const txt=L[b.dataset.i][1];
-const ok=()=>{b.textContent="Copied!";b.style.borderColor="var(--or)";b.style.color="var(--or)";$("live").textContent="Prompt copied to clipboard";setTimeout(()=>{b.textContent="Copy prompt";b.style.borderColor=b.style.color=""},2000)};
-const fb=()=>{const t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand("copy");ok()}catch(_){b.textContent="Press Ctrl+C"}t.remove()};
-navigator.clipboard&&window.isSecureContext?navigator.clipboard.writeText(txt).then(ok,fb):fb()});
+$("lib").addEventListener("click",e=>{
+ const b=e.target.closest(".cp");if(!b)return;
+ const txt=L[b.dataset.i][1];
+ const ok=()=>{b.textContent="Copied!";b.style.borderColor="var(--or)";b.style.color="var(--or)";$("live").textContent="Prompt copied to clipboard";setTimeout(()=>{b.textContent="Copy prompt";b.style.borderColor=b.style.color=""},2000)};
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok)}else{
+  const t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();
+  try{document.execCommand("copy");ok()}catch(_){b.textContent="Press Ctrl+C"}t.remove();
+ }
+});
 
-/* Timeline */
-const T=[
-["ERP migration support","Henry Schein","Supported the migration from Dynamics NAV to Business Central.","[2026/04/01]",1],
-["SAP Ariba/Comet exposure","Resolution Circle","Consulting work on the MANGO Risk Platform.","[2024/07/01]"],
-["Academic Administrative Assistant","University of Johannesburg","Power BI and Excel dashboard work.","[2025/01/01"],
-["Clickatell 1-Month AI Bootcamp","CAPACITI","Prompt design, chatbot design and AI content workflows.","01 September to 30 September 2026"],
-["BCom Information Systems","University of Johannesburg","Majors: Information Systems, Project Management. Minor: Entrepreneurship.","[2024/03/14]"],
-["Introduction to Artificial Intelligence","IBM - Coursera","Course badge covering foundational AI concepts and practical AI terminology.","[2026/09/25]"],
-["Introduction to Generative AI","Google Cloud - Coursera","Generative AI fundamentals, terminology, and practical applications.","[2026/09/18]"]];
-$("tl").innerHTML=T.map(x=>`<li${x[4]?' class="now"':""}><h3 style="font-size:1.1rem">${x[0]}${x[1]?', '+x[1]:""}</h3><p class="mono mu" style="margin:.15rem 0 .4rem;font-size:.82rem">${h(x[3])}</p><p class="mu" style="margin:0">${h(x[2])}</p></li>`).join("");
+/* mobile menu */
+const mb=$("mb"),menu=$("menu");
+mb.onclick=()=>{const o=menu.classList.toggle("hidden")===false;mb.setAttribute("aria-expanded",o)};
+menu.onclick=e=>{if(e.target.closest("a")){menu.classList.add("hidden");mb.setAttribute("aria-expanded","false")}};
 
-/* Contact */
-const ic={mail:'<path d="M3 6h18v12H3z M3 7l9 6 9-6"/>',git:'<path d="M8 8l-5 4 5 4 M16 8l5 4-5 4 M14 5l-4 14"/>',in:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7 M8 7v.01 M12 17v-7 M12 13c0-3 5-3 5 0v4"/>'};
-const soc=(k,label,url)=>{const s=`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ic[k]}</svg>`;
-return isPh(url)?`<span class="btn sm" aria-disabled="true" role="link" style="display:inline-flex;gap:.4rem;align-items:center">${s}${label}: coming soon</span>`:`<a class="btn sm" style="display:inline-flex;gap:.4rem;align-items:center" href="${url}" target="_blank" rel="noopener">${s}${label}</a>`};
-$("cta").innerHTML=(isPh(CONFIG.email)?'<span class="btn pri" aria-disabled="true">Email: <span class="ph">[YOUR EMAIL]</span></span>':`<a class="btn pri" href="mailto:${CONFIG.email}">Email me</a>`)+soc("git","GitHub",CONFIG.github)+soc("in","LinkedIn",CONFIG.linkedin);
+/* scroll reveal */
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+
+$("yr").textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
