@@ -76,6 +76,7 @@ dialog{background:var(--panel);color:var(--tx);border:1px solid var(--line);bord
    <li><a class="hover:text-cyan no-underline" href="#skills">Skills</a></li>
    <li><a class="hover:text-cyan no-underline" href="#case-study">Case study</a></li>
    <li><a class="hover:text-cyan no-underline" href="#experience">Experience</a></li>
+   <li><a class="hover:text-cyan no-underline" href="#certifications">Certifications</a></li>
    <li><a class="hover:text-cyan no-underline" href="#contact">Contact</a></li>
   </ul>
   <div class="flex items-center gap-3">
@@ -178,13 +179,30 @@ dialog{background:var(--panel);color:var(--tx);border:1px solid var(--line);bord
    <h2 class="mt-4 text-2xl font-bold">The track so far.</h2>
    <ul class="tl mt-8" id="timeline"></ul>
   </div>
-  <div class="rv">
-   <p class="tag">Certifications</p>
-   <h2 class="mt-4 text-2xl font-bold">Continuous learning.</h2>
-   <ul class="mt-8 grid gap-3" id="certs"></ul>
-  </div>
  </div>
 </section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" style="border-top:1px solid var(--line)">
+ <div class="wrap rv">
+  <p class="tag">Certifications</p>
+  <h2 class="mt-4 text-2xl font-bold">Continuous learning, verified.</h2>
+  <p class="text-muted mt-2 text-sm max-w-2xl">Fifteen completed courses and one specialization from Google, IBM, Google Cloud, DeepLearning.AI, Georgia Tech, Arizona State University and Starweaver, each with a public Coursera verification link.</p>
+  <div id="certGroups"></div>
+ </div>
+</section>
+
+<dialog id="certDlg" style="max-width:60rem">
+ <div class="flex items-start justify-between gap-4">
+  <div><h3 id="certT" class="text-lg font-bold"></h3><p id="certM" class="text-muted text-xs mt-1"></p></div>
+  <button id="certX" class="chip" aria-label="Close">Close</button>
+ </div>
+ <img id="certImg" alt="" class="mt-4 w-full rounded-lg" style="border:1px solid var(--line)">
+ <div class="mt-4 flex flex-wrap gap-3 text-sm">
+  <a id="certV" target="_blank" rel="noopener" class="chip">Verify on Coursera</a>
+  <a id="certP" target="_blank" rel="noopener" class="chip">Download PDF</a>
+ </div>
+</dialog>
 
 <!-- CONTACT -->
 <section id="contact" class="glow" style="border-top:1px solid var(--line)">
@@ -220,7 +238,7 @@ const isPh=s=>!s||s.charAt(0)==="[";
 const h=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\[[A-Z][^\]]*\]/g,m=>'<span class="ph">'+m+'</span>');
 const $=id=>document.getElementById(id);
 
-const STATS=[["8","Projects built"],["5","Live web apps"],["8","Certifications"],["2024","BCom graduated"]];
+const STATS=[["8","Projects built"],["5","Live web apps"],["15","Certifications"],["2024","BCom graduated"]];
 
 const ABOUT="I study how companies run on ERP, reporting and process, then write the software that removes what gets in the way. On the development side I build full-stack with Python, Flask and JavaScript, and I am currently deepening AI and data skills through the CAPACITI / Clickatell bootcamp: chatbots, structured prompt engineering, and sentiment analysis pipelines that turn unstructured feedback into decisions.";
 
@@ -248,16 +266,7 @@ const T=[
 ["BCom Information Systems (graduated 2024)","University of Johannesburg","Majors: Information Systems, Project Management. Minor: Entrepreneurship.","2021 - 2024"]
 ];
 
-const CERTS=[
-["Google AI Essentials","Google · Coursera","2026"],
-["Introduction to Artificial Intelligence","IBM · Coursera","2026"],
-["Introduction to Generative AI","Google Cloud · Coursera","2026"],
-["AI For Everyone","DeepLearning.AI · Coursera","2026"],
-["Writing Professional Emails in English","Georgia Tech · Coursera","2026"],
-["Verbal Communication and Presentation Skills","Coursera","2026"],
-["Enhancing Communication Skills (Active Listening)","Coursera","2026"],
-["Developing Interpersonal Skills","IBM · Coursera","2026"]
-];
+const CERTS=[["Python for Data Science, AI & Development", "IBM", "Oct 15, 2026", "certificates/python-data-science-ai.jpg", "certificates/python-data-science-ai.pdf", "https://coursera.org/verify/E50C05UK455F", "AI, data and development"], ["Google AI Essentials (Specialization, 5 courses)", "Google", "Sep 7, 2026", "certificates/google-ai-essentials.jpg", "certificates/google-ai-essentials.pdf", "https://coursera.org/verify/specialization/MR3O2COAMBZD", "AI, data and development"], ["Introduction to AI", "Google", "Sep 2, 2026", "certificates/intro-to-ai-google.jpg", "certificates/intro-to-ai-google.pdf", "https://coursera.org/verify/0VMXB71FWFH7", "AI, data and development"], ["Maximize Productivity With AI Tools", "Google", "Sep 2, 2026", "certificates/maximize-productivity.jpg", "certificates/maximize-productivity.pdf", "https://coursera.org/verify/4SJYA11MCSU5", "AI, data and development"], ["Discover the Art of Prompting", "Google", "Sep 2, 2026", "certificates/art-of-prompting.jpg", "certificates/art-of-prompting.pdf", "https://coursera.org/verify/LSOD99PC09LJ", "AI, data and development"], ["Use AI Responsibly", "Google", "Sep 2, 2026", "certificates/use-ai-responsibly.jpg", "certificates/use-ai-responsibly.pdf", "https://coursera.org/verify/CPAKNFD0Q9W6", "AI, data and development"], ["Stay Ahead of the AI Curve", "Google", "Sep 2, 2026", "certificates/stay-ahead-ai-curve.jpg", "certificates/stay-ahead-ai-curve.pdf", "https://coursera.org/verify/5AC69FP9BSAY", "AI, data and development"], ["Introduction to Artificial Intelligence (AI)", "IBM", "Sep 22, 2026", "certificates/intro-to-ai-ibm.jpg", "certificates/intro-to-ai-ibm.pdf", "https://coursera.org/verify/ZY916HUIR5BB", "AI, data and development"], ["Introduction to Generative AI", "Google Cloud", "Sep 29, 2026", "certificates/intro-generative-ai.jpg", "certificates/intro-generative-ai.pdf", "https://coursera.org/verify/V8UE1HRRE3OH", "AI, data and development"], ["AI For Everyone", "DeepLearning.AI", "Sep 14, 2026", "certificates/ai-for-everyone.jpg", "certificates/ai-for-everyone.pdf", "https://coursera.org/verify/Y3FPQ5RK0GI1", "AI, data and development"], ["Write Professional Emails in English", "Georgia Institute of Technology", "Sep 14, 2026", "certificates/professional-emails.jpg", "certificates/professional-emails.pdf", "https://coursera.org/verify/OR3USO35RCSY", "Communication and professional skills"], ["Verbal Communications and Presentation Skills", "Starweaver", "Sep 16, 2026", "certificates/verbal-communication.jpg", "certificates/verbal-communication.pdf", "https://coursera.org/verify/PWMT2LEEFUU4", "Communication and professional skills"], ["Active Listening: Enhancing Communication Skills", "Starweaver", "Sep 23, 2026", "certificates/active-listening.jpg", "certificates/active-listening.pdf", "https://coursera.org/verify/9BB0NGLADA9Q", "Communication and professional skills"], ["Developing Interpersonal Skills", "IBM Skills Network", "Sep 29, 2026", "certificates/interpersonal-skills.jpg", "certificates/interpersonal-skills.pdf", "https://coursera.org/verify/OSG2AA5FI1HB", "Communication and professional skills"], ["Emotional Intelligence", "Arizona State University", "Oct 5, 2026", "certificates/emotional-intelligence.jpg", "certificates/emotional-intelligence.pdf", "https://coursera.org/verify/OEV8ODM4AYEG", "Communication and professional skills"]];
 
 const L=[
 ["Content writer","You are a [ROLE]. Write [CONTENT TYPE] for [AUDIENCE] in a [TONE] tone.\nMust include: [KEY POINTS].\nLength: [LENGTH].\nOutput format: [FORMAT]."],
@@ -293,7 +302,26 @@ $("skills-grid").innerHTML=Object.entries(SK).map(([g,items])=>`<div class="card
 
 $("timeline").innerHTML=T.map(e=>`<li${e[4]?' class="now"':""}><h3>${e[0]}</h3><p class="org">${e[1]}</p><p class="desc">${e[2]}</p><p class="mono text-xs text-muted mt-1">${e[3]}</p></li>`).join("");
 
-$("certs").innerHTML=CERTS.map(c=>`<li class="card card-h p-4 flex items-center justify-between gap-4 list-none"><div><p class="font-semibold text-sm">${c[0]}</p><p class="text-muted text-xs mt-.5">${c[1]}</p></div><span class="chip mono">${c[2]}</span></li>`).join("");
+(function(){
+  const groups={};
+  CERTS.forEach((c,i)=>{(groups[c[6]]=groups[c[6]]||[]).push([c,i]);});
+  $("certGroups").innerHTML=Object.entries(groups).map(([g,items])=>`
+   <h3 class="mt-10 text-sm font-semibold tracking-wide text-cyan uppercase">${g} <span class="text-muted normal-case">(${items.length})</span></h3>
+   <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">${items.map(([c,i])=>`
+    <button type="button" data-cert="${i}" class="card card-h text-left overflow-hidden" style="padding:0">
+     <img src="${c[3]}" alt="${c[0]} certificate" loading="lazy" class="w-full" style="aspect-ratio:1233/950;object-fit:cover;border-bottom:1px solid var(--line)">
+     <div class="p-4"><p class="font-semibold text-sm">${c[0]}</p><p class="text-muted text-xs mt-1">${c[1]} · ${c[2]}</p></div>
+    </button>`).join("")}</div>`).join("");
+  const d=$("certDlg");
+  document.querySelectorAll("[data-cert]").forEach(b=>b.onclick=()=>{
+    const c=CERTS[+b.dataset.cert];
+    $("certT").textContent=c[0]; $("certM").textContent=c[1]+" · "+c[2]+" · Coursera";
+    $("certImg").src=c[3]; $("certImg").alt=c[0]+" certificate";
+    $("certV").href=c[5]; $("certP").href=c[4]; d.showModal();
+  });
+  $("certX").onclick=()=>d.close();
+  d.addEventListener("click",e=>{if(e.target===d)d.close();});
+})();
 
 $("contact-btns").innerHTML=`<a class="btn btn-pri no-underline" href="mailto:${CONFIG.email}">Email me</a>${btn("GitHub",CONFIG.github)}${btn("LinkedIn",CONFIG.linkedin)}`;
 
