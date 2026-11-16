@@ -119,7 +119,10 @@ dialog{background:var(--panel);color:var(--tx);border:1px solid var(--line);bord
    <h2 class="mt-4 text-2xl font-bold">How I work</h2>
    <p class="text-muted mt-4" id="about-text"></p>
   </div>
-  <div class="md:col-span-3 grid sm:grid-cols-2 gap-4" id="about-cards"></div>
+  <div class="md:col-span-3">
+   <div class="grid sm:grid-cols-2 gap-4" id="about-cards"></div>
+   <div class="mt-4 card p-5" id="about-proof" aria-label="Verified work"></div>
+  </div>
  </div>
 </section>
 
@@ -240,13 +243,9 @@ const $=id=>document.getElementById(id);
 
 /* stats are derived after the project list is defined, below */
 
-const ABOUT="I study how companies run on ERP, reporting and process, then write the software that removes what gets in the way. On the development side I build full-stack with Python, Flask and JavaScript, and I am currently deepening AI and data skills through the CAPACITI / Clickatell bootcamp: chatbots, structured prompt engineering, and sentiment analysis pipelines that turn unstructured feedback into decisions.";
+const ABOUT="I started on the process side: how a business actually runs on ERP, reporting and standard operating procedures. That is still how I approach software. Before writing anything I want to know which decision the system supports, who makes it, and what happens on the day it is wrong. Then I build it: Python and FastAPI for the service, vanilla JavaScript and Tailwind for the interface, SQL when the data needs a shape. Most of that work is now AI-enabled, and that adds a responsibility the usual build does not have. A model classifying a hospital ticket is making a judgement about someone's day, so it has to be explained, tested, and honest about when it does not know. Which is why I test the claims, not just the code: on MedOps AI I ran 231 automated tests, parity-checked the browser engine against the service on 1,458 values, and published the forecast's error margin next to the number even when the result made the model look unnecessary. I would rather ship a smaller claim I can defend than a big one I cannot.";
 
-const FOCUS=[
-["Business systems","ERP migrations, business requirements documents, standard operating procedures and the reporting layer around them.","ERP · BA"],
-["Software","Full-stack web applications in Python/Flask and vanilla JavaScript, from database schema to deployed product.","Python · JS"],
-["AI and data","Sentiment analysis pipelines, prompt libraries and chatbots, built to produce evidence, not vibes.","NLP · Prompts"]
-];
+const FOCUS=[["Business systems", "ERP migrations, business requirements documents, standard operating procedures and the reporting layer around them.", "ERP \u00b7 BA"], ["Software", "Full-stack services in Python and FastAPI, interfaces in vanilla JavaScript and Tailwind, SQL schemas underneath.", "Python \u00b7 JS"], ["AI and data", "Classification, NLP and prompt engineering, plus the governance around them: bias audits, patient-data screening, decision logs.", "NLP \u00b7 Governance"], ["Evidence over claims", "Automated tests, parity checks between two implementations of the same logic, error margins published beside the forecast and limits written down.", "Testing \u00b7 Trust"]];
 
 const SK={"Programming and web":["Python","Flask","JavaScript (vanilla)","HTML/CSS","Tailwind","Git/GitHub"],"Databases and analytics":["MySQL","PostgreSQL","Supabase","Power BI","Excel"],"AI and prompt engineering":["Prompt design and optimisation","Chatbot design","VADER and TextBlob sentiment analysis","AI content workflows"],"ERP and systems":["Business requirements documents","Architecture documentation","Process and reporting analysis"]};
 
@@ -280,6 +279,8 @@ const L=[
 $("stats").innerHTML=STATS.map(s=>`<div class="card p-5"><dd class="text-2xl font-bold text-cyan">${s[0]}</dd><dt class="text-xs text-muted mt-1 uppercase tracking-wider">${s[1]}</dt></div>`).join("");
 
 $("about-text").textContent=ABOUT;
+const PROOF=[["231","automated tests on the MedOps AI platform"],["1,458","values parity-checked between browser and service"],["11","procurement fraud typologies screened in FraudLens"]];
+$("about-proof").innerHTML=`<p class="tag">Verified work</p><div class="mt-3 grid gap-3 sm:grid-cols-3">`+PROOF.map(p=>`<div><p class="text-xl font-bold mono text-cyan">${p[0]}</p><p class="text-muted text-xs mt-1">${p[1]}</p></div>`).join("")+`</div>`;
 $("about-cards").innerHTML=FOCUS.map(f=>`<div class="card card-h p-6"><div class="flex items-start justify-between gap-3"><h3 class="font-bold">${f[0]}</h3><span class="chip mono">${f[2]}</span></div><p class="text-muted text-sm mt-3">${f[1]}</p></div>`).join("");
 
 const btn=(label,url,primary)=>isPh(url)?`<button class="btn ${primary?"btn-pri":"btn-gho"}" disabled aria-disabled="true">${label}: coming soon</button>`:`<a class="btn ${primary?"btn-pri":"btn-gho"} no-underline" href="${url}" target="_blank" rel="noopener">${label}</a>`;
